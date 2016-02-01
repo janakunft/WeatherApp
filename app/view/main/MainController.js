@@ -23,7 +23,9 @@ Ext.define('Weather.view.main.MainController', {
             cfg.itemId = id;
             cfg.closable = true;
             tab = tabs.add(cfg);
-            //this.fireViewEvent
+            if (prefix == 'city') {
+                this.buildCityContent();
+            }
         }
 
         tabs.setActiveTab(tab);
@@ -51,6 +53,25 @@ Ext.define('Weather.view.main.MainController', {
                 data: {
                     theCity: rec
                 }
+            }
+        });
+    },
+
+    buildCityContent: function() {
+        Ext.data.JsonP.request({
+            url: 'http://api.openweathermap.org/data/2.5/weather',
+            params: {
+                APPID: 'c6abf9a119dee26f96fa8ebf3f01a3b4',
+                units: 'metric',
+                q: 'London'
+            },
+            success: function(response){
+                console.log(response);
+                var text = response.responseText;
+                // process server response here
+            },
+            failure: function(response) {
+                console.log(response);
             }
         });
     }
