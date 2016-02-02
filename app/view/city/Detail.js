@@ -7,11 +7,24 @@ Ext.define('Weather.view.city.Detail', {
     ],
 
     bind: {
-        title: 'City - {theCity.name}',
-        html: '{weather.base}'
+        title: 'City - {theCity.name}'
+        //html: '{weather.base}'
     },
 
-    listeners: {
-        //render: 'onCityAdd'
-    }
+    layout: {
+        type: 'table',
+        columns: 2
+    },
+
+    items: [{
+        html: 'Current Temperature'
+    },{
+        bind: {
+            html: '{weather.main.temp}'
+        }
+    },{
+        html: 'Humidity'
+    },{
+        html: '66%'
+    }]
 });
