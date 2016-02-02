@@ -1,11 +1,28 @@
-Ext.define('Weather.view.main.DetailModel', {
+Ext.define('Weather.view.city.DetailModel', {
     extend: 'Ext.app.ViewModel',
 
-    alias: 'viewmodel.detail',
+    alias: 'viewmodel.citydetail',
 
-    /*data: {
-        name: 'Weather'
-    }*/
+    formulas: {
+        sunriseTime: function (get) {
+            var ms = get('weather.sys.sunrise') * 1000,
+                dt = new Date(ms);
+            console.log(dt.getTimezoneOffset());
+            return dt.toLocaleTimeString();
+        },
 
-    //TODO - add data, formulas and/or methods to support your view
+        sunsetTime: function (get) {
+            var ms = get('weather.sys.sunset') * 1000,
+                dt = new Date(ms);
+            console.log(dt.getTimezoneOffset());
+            return dt.toLocaleTimeString();
+        },
+
+        timestamp: function (get) {
+            var ms = get('weather.dt') * 1000,
+                dt = new Date(ms);
+            console.log(dt.getTimezoneOffset());
+            return dt.toLocaleTimeString();
+        }
+    }
 });

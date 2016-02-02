@@ -50,9 +50,6 @@ Ext.define('Weather.view.main.MainController', {
         this.createTab('city', rec, {
             xtype: 'citydetail',
             session: true,
-            /*listeners: {
-                render: 'onCityRender'
-            },*/
             viewModel: {
                 data: {
                     theCity: rec
@@ -60,10 +57,6 @@ Ext.define('Weather.view.main.MainController', {
             }
         });
     },
-
-    /*onCityRender: function(cityview) {
-        alert('city rendered main');
-    },*/
 
     buildCityContent: function(rec,tab) {
         Ext.data.JsonP.request({
@@ -75,13 +68,25 @@ Ext.define('Weather.view.main.MainController', {
             },
             scope: this,
             success: function(response){
-                console.log(response);
-                console.log(response.base);
-                //var text = response.responseText;
-                // process server response here
-                //tab.getViewModel().setData(response);
-                //tab.getViewModel().setData({theCity: {weather: response}});
+                console.log('weather', response);
                 tab.getViewModel().setData({weather: response});
+            },
+            failure: function(response) {
+                console.log(response);
+            }
+        });
+
+        Ext.data.JsonP.request({
+            url: 'http://api.openweathermap.org/data/2.5/forecast',
+            params: {
+                APPID: 'c6abf9a119dee26f96fa8ebf3f01a3b4',
+                units: 'metric',
+                q: rec.data.name + ',' + rec.data.country
+            },
+            scope: this,
+            success: function(response){
+                console.log('forecast', response);
+                tab.getViewModel().setData({forecast: response});
             },
             failure: function(response) {
                 console.log(response);
