@@ -1,5 +1,5 @@
 Ext.define('Weather.view.city.Detail', {
-    extend: 'Ext.grid.Panel',
+    extend: 'Ext.panel.Panel',
     alias: 'widget.citydetail',
 
     requires: [
@@ -8,7 +8,7 @@ Ext.define('Weather.view.city.Detail', {
 
     bind: {
         title: 'City - {theCity.name}',
-        html: '{weather.main.temp}'
+        html: '{weather.base}'
     },
 
     listeners: {

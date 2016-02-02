@@ -76,9 +76,12 @@ Ext.define('Weather.view.main.MainController', {
             scope: this,
             success: function(response){
                 console.log(response);
+                console.log(response.base);
                 //var text = response.responseText;
                 // process server response here
-                tab.getViewModel().setData(response);
+                //tab.getViewModel().setData(response);
+                //tab.getViewModel().setData({theCity: {weather: response}});
+                tab.getViewModel().setData({weather: response});
             },
             failure: function(response) {
                 console.log(response);
