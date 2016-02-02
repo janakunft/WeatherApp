@@ -71,7 +71,7 @@ Ext.define('Weather.view.main.MainController', {
             params: {
                 APPID: 'c6abf9a119dee26f96fa8ebf3f01a3b4',
                 units: 'metric',
-                q: 'London'
+                q: rec.data.name + ',' + rec.data.country
             },
             scope: this,
             success: function(response){
