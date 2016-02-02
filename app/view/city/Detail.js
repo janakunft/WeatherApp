@@ -7,7 +7,11 @@ Ext.define('Weather.view.city.Detail', {
     ],
 
     bind: {
-        title: 'City - {theCity.name}'
+        title: 'City - {theCity.name}',
+        html: '{weather.main.temp}'
     },
 
+    listeners: {
+        //render: 'onCityAdd'
+    }
 });

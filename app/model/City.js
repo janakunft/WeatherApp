@@ -2,7 +2,8 @@ Ext.define('Weather.model.City', {
     extend: 'Ext.data.Model',
     fields: [
         {name: 'name',  type: 'string'},
-        {name: 'country',   type: 'string'}
+        {name: 'country',   type: 'string'},
+        {name: 'weather-main', type: 'string'}
     ],
     idProperty: 'id'
 });

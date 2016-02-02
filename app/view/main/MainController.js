@@ -24,8 +24,9 @@ Ext.define('Weather.view.main.MainController', {
             cfg.closable = true;
             tab = tabs.add(cfg);
             if (prefix == 'city') {
-                this.buildCityContent();
+                this.buildCityContent(rec,tab);
             }
+            //tab.fireEvent(prefix + 'add');
         }
 
         tabs.setActiveTab(tab);
@@ -49,6 +50,9 @@ Ext.define('Weather.view.main.MainController', {
         this.createTab('city', rec, {
             xtype: 'citydetail',
             session: true,
+            /*listeners: {
+                render: 'onCityRender'
+            },*/
             viewModel: {
                 data: {
                     theCity: rec
@@ -57,7 +61,11 @@ Ext.define('Weather.view.main.MainController', {
         });
     },
 
-    buildCityContent: function() {
+    /*onCityRender: function(cityview) {
+        alert('city rendered main');
+    },*/
+
+    buildCityContent: function(rec,tab) {
         Ext.data.JsonP.request({
             url: 'http://api.openweathermap.org/data/2.5/weather',
             params: {
@@ -65,10 +73,12 @@ Ext.define('Weather.view.main.MainController', {
                 units: 'metric',
                 q: 'London'
             },
+            scope: this,
             success: function(response){
                 console.log(response);
-                var text = response.responseText;
+                //var text = response.responseText;
                 // process server response here
+                tab.getViewModel().setData(response);
             },
             failure: function(response) {
                 console.log(response);

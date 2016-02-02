@@ -2,15 +2,11 @@ Ext.define('Weather.view.city.DetailController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.weatherdetail',
 
-    init: function() {
-        alert('init')
-    },
+    /*control: {
+        '#': {  // matches the view itself
+            cityadd: 'onCityAdd'
+        }
+    },*/
 
-    beforeInit: function() {
-        alert('beforeInit')
-    },
-
-    initViewModel: function() {
-        alert('initViewModel')
-    }
+    
 });
